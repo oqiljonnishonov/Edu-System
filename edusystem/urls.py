@@ -26,11 +26,11 @@ from drf_yasg import openapi
 
 schema_view=get_schema_view(
     openapi.Info(
-        title='Ansor IT Academy',
-        default_version='v0',
-        description='AFPT',
-        terms_of_service='HTU',
-        contact=openapi.Contact(email='T@T.U'),
+        title='API DOC',
+        default_version='v1',
+        description='swagger documentation for Next Developers Team',
+        terms_of_service='© Next Developers Team 2023.',
+        contact=openapi.Contact(email='o.islomov@tuit.uz'),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
@@ -39,8 +39,9 @@ schema_view=get_schema_view(
 
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-        path('',include('systemapp.urls')),
-    path('',include('dj_rest_auth.urls')),
-    path('swagger/',schema_view.with_ui('swagger',cache_timeout=0),name='schema-swagger-ui')
+    path("korinmas_admin/", admin.site.urls),
+    path('korinmas_api/',include('systemapp.urls')),
+    path('korinmas_api/',include('dj_rest_auth.urls')),
+    path('',schema_view.with_ui('swagger',cache_timeout=0),name='schema-swagger-ui')
+    #path('swagger/',schema_view.with_ui('swagger',cache_timeout=0),name='schema-swagger-ui')
 ]
