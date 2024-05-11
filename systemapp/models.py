@@ -6,6 +6,20 @@ from django.contrib.auth.models import Group, Permission
 
 # Create your models here.
 
+from django.contrib.auth.models import User
+
+class APIUsageLog(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    endpoint = models.CharField(max_length=255)
+    request_method = models.CharField(max_length=10)
+    ip_address = models.CharField(max_length=50)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user} - {self.endpoint} - {self.request_method}"
+
+
+
 class Courses(models.Model):
     course_name=models.CharField(max_length=100 , verbose_name='Course title')
 
